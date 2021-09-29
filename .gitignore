@@ -1,3 +1,8 @@
+# Custom
+geckodriver.log
+db.sqlite3
+virtualenv/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
