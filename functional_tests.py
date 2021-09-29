@@ -1,28 +1,39 @@
 from selenium import webdriver
+import unittest
 
-browser = webdriver.Firefox()
+class NewVisitorTest(unittest.TestCase):
 
-# A user goes to the homepage to check out the website
-browser.get("http://localhost:8000")
+    def setUp(self) -> None:
+        self.browser = webdriver.Firefox()
 
-# The user notices the page title and header mention to-do lists
-assert 'To-Do' in browser.title
+    def tearDown(self) -> None:
+        self.browser.quit()
+    
+    def test_can_start_a_list_and_retrieve_it_later(self) -> None:
+        # User opens the homepage
+        self.browser.get("http://localhost:8000")
 
-# The user is invited to enter a to-do item straight away
+        # She notices the page title and header mention to-do lists
+        self.assertIn("To-Do", self.browser.title)
+        self.fail("Finish the test")
 
-# The user types "Buy peacock feathers" into a text box
+        # User is invited to enter a to-do item straight away
 
-# When the user hits enter, the page updates and now the page lists
-# "1: Buy peacock feathers" as an item in a to-do list
+        # User types "But peacock feathers" into a text box
 
-# There is still a text box inviting the user to add another item. The user enters 
-# "Use peacock feathers to make a fly"
+        # When user hits enter, the page updates and lists
+        # "Buy peacock feathers"
 
-# The page updates again, and now shows both items on their list
+        # There is still a text box inviting the user to add another item.
+        # The user enters "Use peacock feathers to make a fly"
 
-# The user sees a unique url and some explanatory message about saving the list
+        # The page updates again and now shows both items on the list
 
-# The user visits the url and the to-do list is still there
+        # The user notices a unique URL with explanatory text
 
-# The user quits the application
-browser.quit()
+        # The user visits the url and the to-do list is still there
+
+        # The user closes the browser
+
+if __name__ == "__main__":
+    unittest.main()
